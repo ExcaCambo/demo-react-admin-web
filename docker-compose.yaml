@@ -1,0 +1,17 @@
+version: '3'
+services:
+  react-admin-web:
+    container_name: react-admin-web
+    hostname: react-admin-web
+    ports:
+      - "30100:3000"
+    env_file:
+      - $PWD/.env
+    image: registry.digitalocean.com/narith-registry/react-admin-web:latest
+    networks:
+      digital-server:
+        ipv4_address: 192.168.49.100
+
+networks:
+  digital-server:
+    external: true  # Use the existing network
