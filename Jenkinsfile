@@ -74,15 +74,17 @@ pipeline {
   post {
     always {
       echo 'Final Stage: Notification'
-      def contenBody = """
+      script {
+        def contenBody = """
 <b>App</b>: ${appName} 
 <b>Version</b>: ${version}
 <b>Status</b>: ${currentBuild.currentResult}"""
-      def parameters = [
-        [$class: 'StringParameterValue', name: 'HEADER', value: "WEB DEPLOYMENT"],
-        [$class: 'StringParameterValue', name: 'BODY', value: "${contenBody}"],
-      ]
-      build job: 'Notifier/send-telegram-message', parameters: parameters
+        def parameters = [
+          [$class: 'StringParameterValue', name: 'HEADER', value: "WEB DEPLOYMENT"],
+          [$class: 'StringParameterValue', name: 'BODY', value: "${contenBody}"],
+        ]
+        build job: 'Notifier/send-telegram-message', parameters: parameters
+      }
     }
   }
 }
