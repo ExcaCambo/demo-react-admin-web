@@ -8,13 +8,13 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+# RUN npm install
 
 # Copy the entire application code to the container
 COPY . .
 
 # Build the React app for production
-RUN npm run build
+# RUN npm run build
 
 # Expose the port.
 EXPOSE 3000
