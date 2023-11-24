@@ -5,7 +5,9 @@ def version = '1.0.0-default'
 def port = 30100
 
 pipeline {
+
   agent { label 'api-node-02' }
+  tools { nodejs 'NODEJS-1614' }
 
   stages {    
     stage('Preparation') {
