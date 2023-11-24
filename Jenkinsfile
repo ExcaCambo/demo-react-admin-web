@@ -63,6 +63,9 @@ pipeline {
         script {
           echo 'Deploy Application'
           sh "bash scripts/docker-deploy.sh ${version}"
+          catchError(buildResult: 'UNSTABLE') {
+            echo 'Build Failed ...'
+          }
         }
       }
     }
